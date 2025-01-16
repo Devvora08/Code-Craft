@@ -22,7 +22,8 @@ function EditorPanel() {
   useEffect(()=> {
     const savedCode = localStorage.getItem(`editor-code-${language}`)
     const newCode = savedCode || LANGUAGE_CONFIG[language].defaultCode
-    if(editor) editor.setValue(newCode)
+    // @ts-expect-error: 'setValue' is not recognized due to missing type definition in 'monaco-editor'
+    if (editor) editor.setValue(newCode);
   }, [language, editor])
 
   useEffect(() => {
@@ -32,6 +33,7 @@ function EditorPanel() {
 
   const handleRefresh = () => {
     const defaultCode = LANGUAGE_CONFIG[language].defaultCode;
+    // @ts-expect-error: 'setValue' is not recognized due to missing type definition in 'monaco-editor'
     if (editor) editor.setValue(defaultCode);
     localStorage.removeItem(`editor-code-${language}`);
   }
@@ -111,6 +113,7 @@ function EditorPanel() {
               onChange={handleEditorChange}
               theme={theme}
               beforeMount={defineMonacoThemes}
+              // @ts-expect-error: 'setValue' is not recognized due to missing type definition in 'monaco-editor'
               onMount={(editor) => setEditor(editor)}
 
               options={{

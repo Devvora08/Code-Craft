@@ -35,11 +35,12 @@ export const useCodeEditorStore = create<CodeEditorState>((set, get) => {
     error: null,
     editor: null,
     executionResult: null,
-
+    // @ts-expect-error: 'setValue' is not recognized due to missing type definition in 'monaco-editor'
     getCode: () => get().editor?.getValue() || "",
 
     setEditor: (editor: Monaco) => {
       const savedCode = localStorage.getItem(`editor-code-${get().language}`);
+      // @ts-expect-error: 'setValue' is not recognized due to missing type definition in 'monaco-editor'
       if (savedCode) editor.setValue(savedCode);
 
       set({ editor });
@@ -57,6 +58,7 @@ export const useCodeEditorStore = create<CodeEditorState>((set, get) => {
 
     setLanguage: (language: string) => {
       // Save current language code before switching
+      // @ts-expect-error: 'setValue' is not recognized due to missing type definition in 'monaco-editor'
       const currentCode = get().editor?.getValue();
       if (currentCode) {
         localStorage.setItem(`editor-code-${get().language}`, currentCode);
