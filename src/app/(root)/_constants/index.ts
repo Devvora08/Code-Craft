@@ -343,8 +343,12 @@ export const THEMES: Theme[] = [
   { id: "monokai", label: "Monokai", color: "#272822" },
   { id: "solarized-dark", label: "Solarized Dark", color: "#002b36" },
 ];
+interface ThemeRule {
+  token: string;
+  foreground: string;
+}
 
-export const THEME_DEFINITONS: Record<string, { base: 'vs' | 'vs-dark' | 'hc-black'; inherit: boolean; rules: any[]; colors: Record<string, string>; }> = {
+export const THEME_DEFINITONS: Record<string, { base: 'vs' | 'vs-dark' | 'hc-black'; inherit: boolean; rules: ThemeRule[]; colors: Record<string, string>; }> = {
     "github-dark": {
       base: "vs-dark", // Ensure this matches 'BuiltinTheme'
       inherit: true,
